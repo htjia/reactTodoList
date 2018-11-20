@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import TodoItem from './TodoItem';
-// import axios from 'axios'
 import 'antd/dist/antd.css';
 import store from './store'
-import { getInputChangeAction, getAddItemAction, getDelectItemAction, getTodoList } from './store/anctionCreators'
+import {
+    getInputChangeAction,
+    getAddItemAction,
+    getDelectItemAction,
+    getInitList
+} from './store/anctionCreators'
 import TodoListUI from './TodoListUI'
 import './style.css';
+//
 
 class TodoList extends Component {
     constructor(props) { // 就是一个生命周期函数（组件创建的时候执行）es6独有的，非react生命周期函数
@@ -30,8 +35,19 @@ class TodoList extends Component {
         )
     }
     componentDidMount() {
-        const action = getTodoList()
+        const action = getInitList()
         store.dispatch(action)
+
+        // redux-thunk 使用方法
+        // const action = getTodoList()
+        // store.dispatch(action)
+
+
+        // axios.get('/list.json').then((res) => {
+        //     const data = res.data
+        //     const action = initListAction(data)
+        //     store.dispatch(action)
+        // })
     }
     handleStoreChange() {
         this.setState(store.getState())
