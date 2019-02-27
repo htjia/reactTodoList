@@ -23,12 +23,6 @@ class TodoItem extends Component {
     }
     // 当一个组件从父组建接收了参数
     // 只要父组建的render函数被重新执行了，子组件的componentWillReceiveProps就会被执行
-    // componentWillReceiveProps() {
-    //     console.log('child-----componentWillReceiveProps');
-    // }
-    // componentWillUnmount() {
-    //     console.log('child-----componentWillUnmount');
-    // }
     handleClick() {
         const { deleteItem, index } = this.props
         deleteItem(index)

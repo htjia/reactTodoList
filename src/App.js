@@ -13,16 +13,6 @@ class App extends Component {
     render() {
         return (
             <Fragment>
-                {/*<CSSTransition*/}
-                    {/*in={this.state.show}*/}
-                    {/*timeout={1000}*/}
-                    {/*classNames={'fade'}*/}
-                    {/*unmountOnExit*/}
-                    {/*onEntered={(el)=>{el.style.color = 'blue'}}*/}
-                    {/*appear={true}*/}
-                {/*>*/}
-                    {/*<div>hello</div>*/}
-                {/*</CSSTransition>*/}
                 <TransitionGroup
                     in={this.state.list}
                 >

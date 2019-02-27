@@ -18,26 +18,10 @@ class TodoList extends Component {
         this.handleStoreChange = this.handleStoreChange.bind(this)
         store.subscribe(this.handleStoreChange)
     }
-    // 组件被挂载之前执行
-    // componentWillMount() {
-    //     console.log('componentWillMount');
-    // }
-
     render() { // 就是一个生命周期函数
-        console.log('parent---render');
         return (
             <Fragment>
                 <div style={{margin:10}}>
-                    {/*<label htmlFor="insertArea">输入内容</label>*/}
-                    {/*<input*/}
-                        {/*id='insertArea'*/}
-                        {/*className="input"*/}
-                        {/*value={ this.state.inputValue }*/}
-                        {/*onChange={ this.handleInputChange }*/}
-                        {/*ref={(input) => {*/}
-                            {/*this.input = input*/}
-                        {/*}}*/}
-                    {/*/>*/}
                     <Input
                         value={this.state.inputValue}
                         placeholder="Basic usage"
@@ -56,45 +40,13 @@ class TodoList extends Component {
                         dataSource={this.state.list}
                         renderItem={(item, index) => (<List.Item onClick={ this.handleItemDelete.bind(this, index) }>{item}</List.Item>)}
                     />
-                    {/*<button onClick={ this.handleBtnClick }>提交</button>*/}
                 </div>
-                {/*<ul>*/}
-                    {/*{ this.getTodoItem() }*/}
-                {/*</ul>*/}
             </Fragment>
         )
     }
     handleStoreChange() {
         this.setState(store.getState())
     }
-    // 组件被挂载后执行 (可发送ajax请求)
-    componentDidMount() {
-        // axios.get('/api/todolist').then((res)=>{
-        //     console.log(res.data);
-        //     this.setState(()=>({
-        //         list: [...res.data]
-        //     }))
-        // }).catch(()=>{
-        //     alert('error')
-        // })
-    }
-
-    // 组件更新前执行
-    // shouldComponentUpdate() {
-    //     console.log('shouldComponentUpdate');
-    //     return true // 决定组件是否被更新！   false --> 不更新
-    // }
-
-    // 组件更新前执行 但是在shouldComponentUpdate之后被执行
-    // 如果shouldComponentUpdate返回true执行，返回false则不执行了
-    // componentWillUpdate() {
-    //     console.log('componentWillUpdate');
-    // }
-    // 组件更新后执行
-    // componentDidUpdate() {
-    //     console.log('componentDidUpdate');
-    // }
-
     getTodoItem() {
         return this.state.list.map((item, index) => {
             return (
@@ -108,36 +60,14 @@ class TodoList extends Component {
         })
     }
     handleInputChange(e) {
-        // const value= e.target.value
-        // const action = {
-        //     type: 'CHANGE_INPUT_VALUE',
-        //     value: e.target.value
-        // }
         const action = getInputChangeAction(e.target.value)
         store.dispatch(action)
-        // const value= this.input.value
-        // this.setState(() => ({
-        //     inputValue: value
-        // }))
     }
     handleBtnClick() {
-        // this.setState((prevState) => ({
-        //     list: [...prevState.list,prevState.inputValue],
-        //     inputValue: ''
-        // }))
         const action = getAddItemAction()
         store.dispatch(action)
     }
     handleItemDelete(index) {
-        // immutable
-        // seate 不允许我们做任何修改
-        // this.setState((prevState) => {
-        //     const list = [...prevState.list];
-        //     list.splice(index, 1)
-        //     return {
-        //         list
-        //     }
-        // })
         const action = getDelectItemAction(index)
         store.dispatch(action)
     }
